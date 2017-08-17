@@ -1,6 +1,6 @@
 <template>
   <header id="head_top">
-    <section class="head_goback" v-if="goback" @click="$router.go(-1)">
+    <section class="head_goback" v-if="goback" @click="changeParent()">
       <img src="../../common/images/back.png" alt="">
     </section>
     <section class="head_text ellipsis"  v-if="headTitle">{{headTitle}}</section>
@@ -16,17 +16,22 @@
   export default {
     data(){
       return{
-
+        childParm:'123'
       }
     },
-    props:["goback","headTitle","head_shop","head_ellipsis"]
+    props:["goback","headTitle","head_shop","head_ellipsis"],
+    methods:{
+      changeParent(){
+        this.$emit('childMethod');
+      }
+    }
   };
 </script>
 <style scoped="">
   #head_top{
     background-color: #ffffff;
     position: fixed;
-    z-index: 100;
+    z-index: 10;
     left: 0;
     top: 0;
     width: 100%;
